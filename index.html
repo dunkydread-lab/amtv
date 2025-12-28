@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adopt Me Trading Values</title>
+
+<style>
+body { font-family: Arial; background:#f4f4f4; margin:0; text-align:center;}
+header { background:#222; color:white; padding:15px;}
+.pet { background:white; margin:10px; padding:10px; border-radius:8px;}
+input { padding:10px; width:90%; margin:10px;}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Adopt Me Values</h1>
+<p>Trading values & demand</p>
+</header>
+
+<input id="search" placeholder="Search pet">
+
+<div id="pets"></div>
+
+<script>
+const pets=[
+{name:"Shadow Dragon",value:150,demand:"Very High"},
+{name:"Bat Dragon",value:140,demand:"Very High"},
+{name:"Frost Dragon",value:95,demand:"Very High"},
+{name:"Owl",value:80,demand:"Very High"},
+{name:"Crow",value:70,demand:"High"},
+{name:"Parrot",value:65,demand:"High"},
+{name:"Turtle",value:32,demand:"High"},
+{name:"Unicorn",value:20,demand:"Medium"},
+{name:"Dragon",value:12,demand:"Low"}
+];
+
+const list=document.getElementById("pets");
+
+function show(data){
+ list.innerHTML="";
+ data.forEach(p=>{
+  list.innerHTML+=`
+   <div class="pet">
+    <h3>${p.name}</h3>
+    <p>Value: ${p.value}</p>
+    <p>Demand: ${p.demand}</p>
+   </div>`;
+ });
+}
+
+document.getElementById("search").oninput=e=>{
+ show(pets.filter(p=>p.name.toLowerCase().includes(e.target.value.toLowerCase())));
+};
+
+show(pets);
+</script>
+
+</body>
+</html>
